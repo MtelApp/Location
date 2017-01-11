@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--<color name="colorPrimary">#FFFFFF</color>-->
+    <!--<color name="colorPrimaryDark">#FFFFFF</color>-->
+    <!--<color name="colorAccent">#666666</color>-->
+
+
+
+    <color name="btn_orange">#EB9330</color>
+    <color name="btn_green">#009B63</color>
+
+
+    <color name="gray_color_01">#333333</color>
+    <color name="gray_color_02">#666666</color>
+    <color name="gray_color_03">#B7B7B7</color>
+    <color name="gray_color_04">#C3C3C3</color>
+    <color name="gray_color_05">#CCCCCC</color>
+    <color name="gray_color_06">#D1D1D1</color>
+    <color name="gray_color_07">#F6F6F6</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#0000</color>
+    <color name="transparent_white_90">#E6FFFFFF</color>
+
+
+
+
+
+
+
+    <color name="transparent_white_5">#0DFFFFFF</color>
+    <color name="transparent_white_80">#1AFFFFFF</color>
+
+    <color name="transparent_black_80">#CC000000</color>
+    <color name="transparent_black_90">#E6000000</color>
+    <color name="transparent_black_95">#F2000000</color>
+
+    <color name="color_primary">#9C27B0</color>
+    <color name="color_primary_dark">#6A1B9A</color>
+    <color name="grey">#eaeaea</color>
+    <color name="dark_grey">#F5F5F5</color>
+
+    <color name="transparent_white">#8FFFFFFF</color>
+    <color name="deep_welcome_grey">#45413c</color>
+    <color name="dark_welcome_grey">#3b3833</color>
+    <color name="deep_green">#1e8362</color>
+    <color name="dark_green">#0f573f</color>
+    <color name="deep_gold">#9a885f</color>
+    <color name="dark_gold">#82724e</color>
+    <color name="app_green">#12875c</color>
+    <color name="app_deep_grey">#323232</color>
+    <color name="app_dark_grey">#382d2c</color>
+    <color name="app_black">#0d0a04</color>
+    <color name="app_red">#dd3d3f</color>
+
+    <color name="txt_green">#0c6d4b</color>
+    <color name="txt_red">#fc101b</color>
+    <color name="txt_grey">#968d85</color>
+    <color name="txt_gold">#887951</color>
+
+    <color name="toolbar_blue">#292d84</color>
+
+    <color name="txt_blue">#292d84</color>
+
+
+    <color name="orange">#f36f21</color>
+    <color name="gray">#999999</color>
+    <color name="dialog_bg">#FBFBFB</color>
+</resources>
