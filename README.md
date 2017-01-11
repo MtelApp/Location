@@ -4,7 +4,8 @@
 ### *首先来讲一下android6.0运行时权限的简单封装做法：*
 
 #### 每个项目应该都有一个BaseActivity，我们把运行时权限封装在BaseActivity，代码如下：
-`
+```java
+
 public static void requestRuntimePermission(String[] permissions, PermissionListener listener) {
     Activity topActivity = ActivityCollector.getTopActivity();
     if (topActivity == null) {
@@ -23,10 +24,12 @@ public static void requestRuntimePermission(String[] permissions, PermissionList
         mListener.onGranted();
     }
 }
-`
+
+
+```
 #### 简单说下上面的代码，创建一个permissionList来把一个或者多个权限add进去，通过checkSelfPermission检测权限再进行add进去再去请求权限，如果是6.0以下的就直接回调我们写好的接口mListener.onGranted();进行下一步
      然后就是请求权限的回调了：
-`
+```java
 @Override
 public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -51,10 +54,12 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
             break;
     }
 }
-`
+
+
+```
 #### 如果grantResults>0代表有请求权限，然后新建一个deniedPermissionList来装上回调失败的权限，如果deniedPermission回调权限为空就直接下一步工作mListener.onGranted();，不然就回调所失败的权限mListener.onDenied(deniedPermission);
      在MainActivity中使用，代码：
-`
+```java
 requestRuntimePermission(new String[]{Manifest.permission.ACCESS_WIFI_STATE,Manifest.permission.ACCESS_FINE_LOCATION}, new PermissionListener() {
     @Override
     public void onGranted() {
@@ -69,11 +74,13 @@ requestRuntimePermission(new String[]{Manifest.permission.ACCESS_WIFI_STATE,Mani
 
     }
 });
-`
+
+```
 ### *android自带定位和google play service定位：*
 ### *自带定位：*
 #### 获取系统的定位功能
-`
+```java
+
 private void getLocation() {
     try {
         locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
@@ -101,31 +108,38 @@ private void getLocation() {
         e.printStackTrace();
     }
 }
-`
+
+```
 #### 这里需要位置提供器才能获取到定位，通过监听方法可以不断的请求定位：
-`
+```java
+
 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, myLocationListener);
-`
+
+```
 #### 这样就可以用系统的定位功能了，由于在室内GPS比较难定位，下面使用google play services里面的定位功能
 ### *google play service定位：*
 
 1. 在build.gradle里面添加google play service依赖
-    `
+    ```java
+
     compile 'com.google.android.gms:play-services-location:9.0.2'
-    `
+
+    ```
 2. 在AndroidManifest.xml添加
-    `
+    ```xml
     <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
-    `
+
+    ```java
    #### 和需要的权限等
-   `
+   ```xml
    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-   `
+   ```
 3. 在MainActivity实现接口ConnectionCallbacks, OnConnectionFailedListener，并有回调方法
-   `
+   ```java
+
    @Override
    public void onConnected(@Nullable Bundle bundle) {
        displayLocation();
@@ -140,17 +154,21 @@ locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, m
    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
        ToastUtils.showToast(connectionResult.getErrorMessage());
    }
-   `
+
+   ```
 4. 在 onResume()写上checkPlayServices()
-   `
+   ```java
+
    @Override
    public void onResume() {
        super.onResume();
        checkPlayServices();
    }
-   `
+
+   ```
 5. call mGoogleApiClient.connect()在onStart()方法
-   `
+   ```java
+
    @Override
    public void onStart() {
        super.onStart();
@@ -158,9 +176,11 @@ locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, m
            mGoogleApiClient.connect();
        }
    }
-   `
+
+   ```
 6. 当google api connected成功了，displayLocation()方法在onConnected()之后会获取当前的位置信息
-   `
+   ```java
+
    private boolean checkPlayServices() {
        int resultCode = GooglePlayServicesUtil
                .isGooglePlayServicesAvailable(this);
@@ -191,7 +211,8 @@ locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, m
            e.printStackTrace();
        }
    }
-   `
+
+   ```
 7. 拿到当前的经纬度之后，去call google的api获取相对应的地理位置，api：
    [http://maps.google.cn/maps/api/geocode/json](http://maps.google.cn/maps/api/geocode/json)
 8. 更多详情请看demo
